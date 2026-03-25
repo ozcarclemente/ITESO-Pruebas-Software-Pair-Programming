@@ -1,0 +1,27 @@
+name: Unit tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+
+      - name: Install Python dependencies
+        run: python -m pip install coverage requests
+
+      - name: Run tests with coverage
+        run: |
+          coverage erase
+          coverage run --parallel-mode --branch -m unittest discover -s katas/kata1_fizzbuzz -p "test_*.py"
+          coverage run --parallel-mode --branch -m unittest discover -s katas/kata2_string_calculator -p "test_*.py"
+          coverage run --parallel-mode --branch -m unittest discover -s katas/kata3_password_validation -p "test_*.py"
+          coverage combine
+
+      - name: Check code coverage
+        run: coverage report --fail-under=22 --omit=/usr/lib/python3/*,*/students/*,*/test_*
