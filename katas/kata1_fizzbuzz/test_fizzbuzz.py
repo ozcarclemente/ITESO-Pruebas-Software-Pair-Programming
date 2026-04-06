@@ -34,6 +34,20 @@ class TestFizzBuzz(unittest.TestCase):
         # Then
         self.assertEqual(result, "Fizz")
 
+    def test_multiple_of_5_should_return_buzz(self):
+        """
+        Test that the function returns "Buzz" when the number is a multiple of 5
+        """
+
+        # Given
+        number = 10
+
+        # When
+        result = fizzbuzz(number)
+
+        # Then
+        self.assertEqual(result, "Buzz")
+
 
         
 
