@@ -76,3 +76,15 @@ class TestStringCalculator(unittest.TestCase):
 
         # Then
         self.assertEqual(result, 6)
+
+    def test_should_raise_error_when_separator_is_at_the_end(self):
+        """
+        Test that the function raises an error when the input ends with a separator
+        """
+
+        # Given
+        numbers = "1,2,3,"
+
+        # When / Then
+        with self.assertRaises(ValueError):
+            add(numbers)
