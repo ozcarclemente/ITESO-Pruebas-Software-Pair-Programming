@@ -88,3 +88,26 @@ class TestStringCalculator(unittest.TestCase):
         # When / Then
         with self.assertRaises(ValueError):
             add(numbers)
+
+
+    def test_custom_single_character_delimiter(self):
+        """
+        Escenario: "//;\n1;3" -> 4
+        """
+        self.assertEqual(add("//;\n1;3"), 4)
+
+
+    def test_custom_multi_character_delimiter(self):
+        """
+        Escenario: "//sep\n2sep5" -> 7
+        """
+        self.assertEqual(add("//sep\n2sep5"), 7)
+
+
+    def test_custom_delimiter_with_invalid_separator_should_raise_error(self):
+        """
+        Escenario: "//|\n1|2,3" -> Debería lanzar error porque se usó ',' en lugar de '|'
+        """
+        
+        with self.assertRaisesRegex(ValueError, r"'\|' expected but ',' found"):
+            add("//|\n1|2,3")
