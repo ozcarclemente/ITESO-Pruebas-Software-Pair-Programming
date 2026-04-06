@@ -111,3 +111,16 @@ class TestStringCalculator(unittest.TestCase):
         
         with self.assertRaisesRegex(ValueError, r"'\|' expected but ',' found"):
             add("//|\n1|2,3")
+
+
+    def test_should_raise_error_when_negative_numbers_are_given(self):
+        """
+        Test that the function raises an error when negative numbers are given
+        """
+
+        # Given
+        numbers = "1,-2,3"
+
+        # When / Then
+        with self.assertRaisesRegex(ValueError, "Negative number\(s\) not allowed: -2"):
+            add(numbers)
