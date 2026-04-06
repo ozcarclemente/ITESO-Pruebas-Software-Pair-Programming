@@ -2,11 +2,18 @@ def add(numbers: str) -> int:
     if numbers == "":
         return 0
 
-    normalized_numbers = numbers.replace("\n", ",")
+    delimiter = ","
+    if numbers.startswith("//"):
+        header, numbers = numbers.split("\n", 1)
+        delimiter = header[2:]
 
-    if normalized_numbers.endswith(","):
-        raise ValueError("Input cannot end with a comma")
+    if numbers.endswith(delimiter):
+        raise ValueError("Input cannot end with a separator")
 
-    number_list = normalized_numbers.split(",")
+    parts = numbers.replace("\n", delimiter).split(delimiter)
 
-    return sum(int(n) if n else 0 for n in number_list)
+    for part in parts:
+        if not part.isdigit():
+            raise ValueError(f"'{delimiter}' expected but '{part}' found")
+
+    return sum(int(p) for p in parts)
