@@ -48,3 +48,19 @@ class TestPasswordValidator(unittest.TestCase):
 
         # Then
         self.assertEqual(result, "The password must contain at least 2 numbers")
+
+    def test_should_return_all_error_messages_when_multiple_validations_fail(self):
+        """
+        Test that the function returns all error messages separated by newlines
+        when multiple validations fail
+        """
+ 
+        # Given
+        password = "abc"
+ 
+        # When
+        result = validate_password(password)
+ 
+        # Then
+        self.assertEqual(result, "Password must be at least 8 characters long\nThe password must contain at least 2 numbers")
+        
