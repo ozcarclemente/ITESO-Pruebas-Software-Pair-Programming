@@ -9,6 +9,9 @@ def validate_password(password: str):
     if sum(c.isdigit() for c in password) < 2:
         errors.append("The password must contain at least 2 numbers")
 
+    if not any(c.isupper() for c in password):
+        errors.append("Password must contain at least one capital letter")
+
     if errors:
         return "\n".join(errors)
 
