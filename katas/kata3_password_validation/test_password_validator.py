@@ -63,4 +63,17 @@ class TestPasswordValidator(unittest.TestCase):
  
         # Then
         self.assertEqual(result, "Password must be at least 8 characters long\nThe password must contain at least 2 numbers")
-        
+    
+
+    def test_should_return_message_when_password_has_no_capital_letters(self):
+        """
+        Test that the function returns a message when the password has no capital letters
+        """
+        # Given
+        password = "password123"
+
+        # When
+        result = validate_password(password)
+
+        # Then
+        self.assertEqual(result, "Password must contain at least one capital letter")
