@@ -89,13 +89,11 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             add(numbers)
 
-
     def test_custom_single_character_delimiter(self):
         """
         Escenario: "//;\n1;3" -> 4
         """
         self.assertEqual(add("//;\n1;3"), 4)
-
 
     def test_custom_multi_character_delimiter(self):
         """
@@ -103,15 +101,13 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(add("//sep\n2sep5"), 7)
 
-
     def test_custom_delimiter_with_invalid_separator_should_raise_error(self):
         """
         Escenario: "//|\n1|2,3" -> Debería lanzar error porque se usó ',' en lugar de '|'
         """
-        
+
         with self.assertRaisesRegex(ValueError, r"'\|' expected but ',' found"):
             add("//|\n1|2,3")
-
 
     def test_should_raise_error_when_negative_numbers_are_given(self):
         """
@@ -125,7 +121,6 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Negative number\(s\) not allowed: -2"):
             add(numbers)
 
-    
     def test_multiple_errors_should_be_collected_and_separated_by_newlines(self):
         """
         Escenario: "//|\n1|2,-3" -> Debe juntar el error de negativo y el de separador inválido
@@ -140,3 +135,17 @@ class TestStringCalculator(unittest.TestCase):
 
         # mensaje de excepcion con ambas lineas
         self.assertEqual(str(context.exception), expected_message)
+
+    def test_should_ignore_numbers_when_they_are_greater_than_1000(self):
+        """
+        Test that the function ignores numbers greater than 1000
+        """
+
+        # Given
+        numbers = "2,2002"
+
+        # When
+        result = add(numbers)
+
+        # Then
+        self.assertEqual(result, 2)
