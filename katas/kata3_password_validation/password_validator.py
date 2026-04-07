@@ -12,6 +12,9 @@ def validate_password(password: str):
     if not any(c.isupper() for c in password):
         errors.append("Password must contain at least one capital letter")
 
+    if not any(not c.isalnum() for c in password):
+        errors.append("Password must contain at least one special character")
+
     if errors:
         return "\n".join(errors)
 
