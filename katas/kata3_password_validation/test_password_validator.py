@@ -34,3 +34,17 @@ class TestPasswordValidator(unittest.TestCase):
 
         # Then
         self.assertEqual(result, "Password must be at least 8 characters long")
+
+
+    def test_should_return_message_when_password_has_less_than_2_numbers(self):
+        """
+        Test that the function returns a message when the password has less than 2 numbers
+        """
+        # Given
+        password = "Password1"
+
+        # When
+        result = validate_password(password)
+
+        # Then
+        self.assertEqual(result, "The password must contain at least 2 numbers")
