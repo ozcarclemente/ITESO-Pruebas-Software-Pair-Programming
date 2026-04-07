@@ -46,4 +46,4 @@ def add(numbers: str) -> int:
     if errors:
         raise ValueError("\n".join(errors))
 
-    return sum(int_list)
+    return sum(n for n in int_list if n <= 1000)
