@@ -124,3 +124,19 @@ class TestStringCalculator(unittest.TestCase):
         # When / Then
         with self.assertRaisesRegex(ValueError, "Negative number\(s\) not allowed: -2"):
             add(numbers)
+
+    
+    def test_multiple_errors_should_be_collected_and_separated_by_newlines(self):
+        """
+        Escenario: "//|\n1|2,-3" -> Debe juntar el error de negativo y el de separador inválido
+        """
+        # Given
+        numbers = "//|\n1|2,-3"
+        expected_message = "Negative number(s) not allowed: -3\n'|' expected but ',' found at position 3."
+
+        # When / Then
+        with self.assertRaises(ValueError) as context:
+            add(numbers)
+
+        # mensaje de excepcion con ambas lineas
+        self.assertEqual(str(context.exception), expected_message)
