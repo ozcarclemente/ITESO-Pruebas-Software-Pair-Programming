@@ -56,7 +56,7 @@ class TestPasswordValidator(unittest.TestCase):
         """
  
         # Given
-        password = "abc"
+        password = "Abc"
  
         # When
         result = validate_password(password)
@@ -77,3 +77,17 @@ class TestPasswordValidator(unittest.TestCase):
 
         # Then
         self.assertEqual(result, "Password must contain at least one capital letter")
+
+    def test_should_return_message_when_password_has_no_special_characters(self):
+        """
+        Test that the function returns a message when the password has no special characters
+        """
+ 
+        # Given
+        password = "Password12"
+ 
+        # When
+        result = validate_password(password)
+ 
+        # Then
+        self.assertEqual(result, "Password must contain at least one special character")
