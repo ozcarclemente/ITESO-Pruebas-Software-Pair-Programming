@@ -93,11 +93,11 @@ python -m unittest katas.kata1_fizzbuzz.test_fizzbuzz
 
 ## Katas
 
-| # | Kata | Difficulty |
-|---|------|------------|
-| 1 | FizzBuzz | Beginner |
-| 2 | String Calculator | Beginner |
-| 3 | Password Validation | Beginner |
-| 4 | Search Functionality | Beginner |
-| 5 | Point of Sale | Intermediate |
-| 6 | Banking | Advanced |
+| #   | Kata                 | Difficulty   |
+| --- | -------------------- | ------------ |
+| 1   | FizzBuzz             | Beginner     |
+| 2   | String Calculator    | Beginner     |
+| 3   | Password Validation  | Beginner     |
+| 4   | Search Functionality | Beginner     |
+| 5   | Point of Sale        | Intermediate |
+| 6   | Banking              | Advanced     |

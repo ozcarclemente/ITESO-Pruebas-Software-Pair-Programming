@@ -1,4 +1,7 @@
+"""Tests for the FizzBuzz kata."""
+
 import unittest
+
 from fizzbuzz import fizzbuzz
 
 
