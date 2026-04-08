@@ -1,4 +1,7 @@
+"""Tests for the Password Validator kata."""
+
 import unittest
+
 from password_validator import validate_password
 
 
@@ -63,7 +66,8 @@ class TestPasswordValidator(unittest.TestCase):
         # Then
         self.assertEqual(
             result,
-            "Password must be at least 8 characters long\nThe password must contain at least 2 numbers",
+            "Password must be at least 8 characters long\n"
+            "The password must contain at least 2 numbers",
         )
 
     def test_should_return_message_when_password_has_no_capital_letters(self):

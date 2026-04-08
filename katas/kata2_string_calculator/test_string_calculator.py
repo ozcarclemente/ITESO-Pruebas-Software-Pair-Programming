@@ -1,11 +1,12 @@
+"""Tests for the String Calculator kata."""
+
 import unittest
+
 from string_calculator import add
 
 
 class TestStringCalculator(unittest.TestCase):
-    """
-    Tests for the add function.
-    """
+    """Tests for the add function."""
 
     def test_should_return_zero_when_input_is_empty_string(self):
         """
@@ -118,7 +119,10 @@ class TestStringCalculator(unittest.TestCase):
         numbers = "1,-2,3"
 
         # When / Then
-        with self.assertRaisesRegex(ValueError, "Negative number\(s\) not allowed: -2"):
+        with self.assertRaisesRegex(
+            ValueError,
+            r"Negative number\(s\) not allowed: -2",
+        ):
             add(numbers)
 
     def test_multiple_errors_should_be_collected_and_separated_by_newlines(self):
@@ -127,7 +131,10 @@ class TestStringCalculator(unittest.TestCase):
         """
         # Given
         numbers = "//|\n1|2,-3"
-        expected_message = "Negative number(s) not allowed: -3\n'|' expected but ',' found at position 3."
+        expected_message = (
+            "Negative number(s) not allowed: -3\n"
+            "'|' expected but ',' found at position 3."
+        )
 
         # When / Then
         with self.assertRaises(ValueError) as context:

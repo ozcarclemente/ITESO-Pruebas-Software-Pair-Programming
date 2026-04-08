@@ -1,6 +1,12 @@
+"""Implementation of the Password Validator kata."""
 
-def validate_password(password: str):
 
+def validate_password(password: str) -> bool | str:
+    """
+    Validate a password based on defined rules.
+
+    Returns True if valid, otherwise returns a string with error messages.
+    """
     errors = []
 
     if len(password) < 8:
