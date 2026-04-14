@@ -1,12 +1,18 @@
+"""
+Implementa una función de búsqueda que permita encontrar ciudades basándose en un texto de entrada.
+La función debe cumplir con los siguientes requisitos:
+"""
+
 import json
 import os
+
 
 def _load_cities() -> list:
     """Función auxiliar para cargar los datos del JSON."""
     path = os.path.join(os.path.dirname(__file__), "cities.json")
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)["cities"]
-    
+
 
 def search(search_text: str) -> list:
     """
@@ -25,4 +31,3 @@ def search(search_text: str) -> list:
     # Requerimientos 2, 3 y 4: Búsqueda case-insensitive por prefijo/substring
     search_lower = search_text.lower()
     return [city for city in cities if search_lower in city.lower()]
-
