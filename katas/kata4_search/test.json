@@ -1,0 +1,32 @@
+[
+  {
+    "test_case": "less than 2 characters returns empty list",
+    "input": "a",
+    "expected": []
+  },
+  {
+    "test_case": "finds matches by prefix",
+    "input": "Va",
+    "expected": ["Valencia", "Vancouver"]
+  },
+  {
+    "test_case": "search is case insensitive",
+    "input": "va",
+    "expected": ["Valencia", "Vancouver"]
+  },
+  {
+    "test_case": "finds matches by substring",
+    "input": "ape",
+    "expected": ["Budapest"]
+  },
+  {
+    "test_case": "asterisk returns all cities",
+    "input": "*",
+    "expected": "ALL_CITIES"
+  },
+  {
+    "test_case": "no matches returns empty list",
+    "input": "xyz",
+    "expected": []
+  }
+]

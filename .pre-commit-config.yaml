@@ -18,8 +18,6 @@ repos:
       - id: mixed-line-ending
       - id: name-tests-test
         args: [--pytest-test-first]
-      - id: pretty-format-json
-        exclude: package(-lock)?\.json
       - id: requirements-txt-fixer
       - id: sort-simple-yaml
       - id: trailing-whitespace

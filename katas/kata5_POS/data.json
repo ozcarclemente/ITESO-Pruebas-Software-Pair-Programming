@@ -1,0 +1,37 @@
+[
+  {
+    "barcode": "12345",
+    "description": "Valid barcode 12345 returns $7.25",
+    "expected": "$7.25"
+  },
+  {
+    "barcode": "23456",
+    "description": "Valid barcode 23456 returns $12.50",
+    "expected": "$12.50"
+  },
+  {
+    "barcode": "99999",
+    "description": "Barcode '99999' returns 'Error: Barcode not found' ",
+    "expected": "Error: Barcode not found"
+  },
+  {
+    "barcode": "",
+    "description": "Empty barcode returns 'Error: empty Barcode'",
+    "expected": "Error: empty barcode"
+  },
+  {
+    "barcode": ["12345", "23456"],
+    "description": "Two valid barcodes and total returns sum",
+    "expected": "$19.75"
+  },
+  {
+    "barcode": ["12345"],
+    "description": "One valid barcode and total returns same price",
+    "expected": "$7.25"
+  },
+  {
+    "barcode": ["12345", "99999", "23456"],
+    "description": "Error items are ignored in the total",
+    "expected": "$19.75"
+  }
+]

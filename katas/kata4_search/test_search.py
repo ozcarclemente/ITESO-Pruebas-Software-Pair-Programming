@@ -19,49 +19,32 @@ class TestSearch(unittest.TestCase):
         """
         Set up class for tests.
         """
-        path = os.path.join(os.path.dirname(__file__), "cities.json")
-        with open(path, "r", encoding="utf-8") as f:
+
+        # Get the directory of the current file
+        path = os.path.dirname(__file__)
+
+        # Load cities from cities.json
+        cities_file = os.path.join(path, "cities.json")
+        with open(cities_file, "r", encoding="utf-8") as f:
             cls.cities = json.load(f)["cities"]
+
+        # Load test cases from test.json
+        test_data = os.path.join(path, "test.json")
+        with open(test_data, "r", encoding="utf-8") as f:
+            cls.test_cases = json.load(f)
 
     def test_search_cities_data_driven(self):
         """
         Data driven tests for search function.
         """
 
-        test_cases = [
-            {
-                "test_case": "less than 2 characters returns empty list",
-                "input": "a",
-                "expected": [],
-            },
-            {
-                "test_case": "finds matches by prefix",
-                "input": "Va",
-                "expected": ["Valencia", "Vancouver"],
-            },
-            {
-                "test_case": "search is case insensitive",
-                "input": "va",
-                "expected": ["Valencia", "Vancouver"],
-            },
-            {
-                "test_case": "finds matches by substring",
-                "input": "ape",
-                "expected": ["Budapest"],
-            },
-            {
-                "test_case": "asterisk returns all cities",
-                "input": "*",
-                "expected": self.cities,
-            },
-            {
-                "test_case": "no matches returns empty list",
-                "input": "xyz",
-                "expected": [],
-            },
-        ]
-
-        for case in test_cases:
+        for case in self.test_cases:
             with self.subTest(case=case["test_case"], input=case["input"]):
                 result = search(case["input"])
-                self.assertEqual(case["expected"], result)
+
+                expected = case["expected"]
+
+                if expected == "ALL_CITIES":
+                    expected = self.cities
+
+                self.assertEqual(expected, result)

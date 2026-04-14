@@ -2,6 +2,8 @@
 Test for point of sale functionality.
 """
 
+import json
+import os
 import unittest
 
 from point_of_sale import scan_barcode
@@ -16,43 +18,11 @@ class TestPointOfSale(unittest.TestCase):
         """
         Data driven tests for scanning single barcodes and handling errors.
         """
-        test_cases = [
-            {
-                "description": "Valid barcode 12345 returns $7.25",
-                "barcode": "12345",
-                "expected": "$7.25",
-            },
-            {
-                "description": "Valid barcode 23456 returns $12.50",
-                "barcode": "23456",
-                "expected": "$12.50",
-            },
-            {
-                "description": "Barcode '99999' returns 'Error: Barcode not found' ",
-                "barcode": "99999",
-                "expected": "Error: Barcode not found",
-            },
-            {
-                "description": "Empty barcode returns 'Error: empty Barcode'",
-                "barcode": "",
-                "expected": "Error: empty barcode",
-            },
-            {
-                "description": "Two valid barcodes and total returns sum",
-                "barcode": ["12345", "23456"],
-                "expected": "$19.75",  # $7.25 + $12.50
-            },
-            {
-                "description": "One valid barcode and total returns same price",
-                "barcode": ["12345"],
-                "expected": "$7.25",
-            },
-            {
-                "description": "Error items are ignored in the total",
-                "barcode": ["12345", "99999", "23456"],
-                "expected": "$19.75",  # ignora el código no encontrado
-            },
-        ]
+        base_dir = os.path.dirname(__file__)
+        data_file = os.path.join(base_dir, "data.json")
+
+        with open(data_file, "r", encoding="utf-8") as file:
+            test_cases = json.load(file)
 
         for case in test_cases:
             with self.subTest(msg=case["description"], barcode=case["barcode"]):
